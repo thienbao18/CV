@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Nguyễn Văn Thiên Bảo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f6; /* Nền nhẹ nhàng */
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Đảm bảo shadow và border-radius hoạt động tốt */
+            display: flex; /* Sử dụng Flexbox cho bố cục 2 cột */
+        }
+
+        /* Color Palette - Xanh lá chủ đạo */
+        :root {
+            --primary-green: #28a745; /* Xanh lá đậm */
+            --light-green: #e9f7ee;  /* Xanh lá nhạt cho nền/highlight */
+            --text-dark: #333;
+            --text-medium: #555;
+            --border-color: #e0e0e0;
+        }
+
+        /* Left Column - Sidebar for Contact Info & Skills */
+        .left-column {
+            flex: 1; /* Chiếm 1 phần */
+            background-color: var(--primary-green);
+            color: #ffffff;
+            padding: 30px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        
+        /* Đã chỉnh sửa: Thay đổi font-size cột trái nhỏ hơn, phù hợp cho sidebar */
+        .left-column .header-name h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em; 
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .left-column h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2em;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 5px;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-info ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info ul li i { /* Icons */
+            margin-right: 10px;
+            font-size: 1.1em;
+        }
+
+        .skills ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skills ul li {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            font-size: 0.95em;
+            transition: background-color 0.3s ease;
+        }
+
+        .skills ul li:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Right Column - Main Content */
+        .right-column {
+            flex: 2; /* Chiếm 2 phần, rộng hơn */
+            padding: 30px;
+        }
+
+        .right-column section {
+            margin-bottom: 30px;
+        }
+
+        /* ĐÃ CHỈNH SỬA: Thêm white-space: nowrap để tên hiển thị trên một dòng */
+        .right-column h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: var(--primary-green);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            white-space: nowrap; /* Giữ tên trên một dòng */
+        }
+
+        .right-column .title {
+            font-size: 1.2em;
+            color: var(--text-medium);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .right-column h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6em;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--light-green);
+            padding-bottom: 5px;
+        }
+
+        .right-column h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .section-content {
+            margin-left: 15px;
+        }
+
+        .section-content p, .section-content ul {
+            margin-bottom: 10px;
+            color: var(--text-medium);
+        }
+
+        .section-content ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        .section-content ul li {
+            margin-bottom: 5px;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+        }
+
+        .experience-item .duration, .education-item .duration {
+            font-style: italic;
+            color: var(--text-medium);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .project-item {
+            margin-bottom: 15px;
+            background-color: var(--light-green);
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-green);
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .project-item .tech-stack {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                margin: 10px;
+            }
+
+            .left-column, .right-column {
+                border-radius: 0;
+                padding: 20px;
+            }
+
+            .left-column {
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+
+            .right-column {
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-column">
+            <div class="header-name">
+                <h2>Nguyễn Văn Thiên Bảo</h2>
+            </div>
+
+            <div class="contact-info section">
+                <h3><i class="fas fa-address-card"></i> Thông tin Liên hệ</h3>
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i> Số điện thoại: 0889126325</li>
+                    <li><i class="fas fa-envelope"></i> Địa chỉ email: thienbaonv018@gmail.com</li>
+                    <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/b%E1%BA%A3o-thi%C3%AAn-01b584397/" target="_blank" style="color: white; text-decoration: none;">LinkedIn/Thiên Bảo</a></li>
+                    <li><i class="fab fa-github"></i> <a href="https://github.com/thienbao18" target="_blank" style="color: white; text-decoration: none;">GitHub/thienbao</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> Địa chỉ: 575/8 CMT8, phường Hòa Hưng, TP. Hồ Chí Minh</li>
+                </ul>
+            </div>
+
+            <div class="skills section">
+                <h3><i class="fas fa-cogs"></i> Kỹ năng Lập trình</h3>
+                <ul>
+                    <li>C/C++: 5 năm kinh nghiệm</li>
+                    <li>Python: 3 năm kinh nghiệm</li>
+                    <li>Java: 2 năm kinh nghiệm</li>
+                    <li>Cơ sở dữ liệu: MySQL, PostgreSQL</li>
+                    <li>Version Control: Git, GitHub</li>
+                    <li>Hệ điều hành: Linux, Windows</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <header>
+                <h1>NGUYỄN VĂN THIÊN BẢO</h1>
+                <p class="title">Sinh viên năm 3 | ĐH Tôn Đức Thắng | Chuyên ngành Mạng máy tính & truyền thông dữ liệu</p>
+            </header>
+
+            <section class="objective">
+                <h2><i class="fas fa-bullseye"></i> Mục tiêu Nghề nghiệp</h2>
+                <div class="section-content">
+                    <p>Tìm kiếm vị trí Thực tập sinh trong lĩnh vực Bảo mật / Đám mây (CI/CD, Cơ sở hạ tầng mạng, Nền tảng đám mây).</p>
+                    <p>Mong muốn phát triển chuyên môn, đóng góp vào các dự án công nghệ đòi hỏi độ phức tạp cao, đồng thời tận dụng kinh nghiệm sẵn có để chia sẻ kiến thức trong nội bộ đội nhóm.</p>
+                </div>
+            </section>
+
+            <section class="education">
+                <h2><i class="fas fa-star"></i> Ưu điểm</h2>
+                <div class="section-content">
+                    <div class="education-item">
+                        <p>Có tư duy logic và khả năng phân tích, giải quyết vấn đề tốt.</p>
+                        <p>Thái độ nghiêm túc, cầu tiến và luôn sẵn sàng học hỏi công nghệ mới.</p>
+                        <p>Hiểu vững các kiến thức nền tảng về lập trình, mạng máy tính và cơ sở dữ liệu.</p>
+                        <p>Làm việc nhóm hiệu quả, có tinh thần trách nhiệm và tuân thủ quy trình kỹ thuật.</p>
+                        <p>Thái độ cầu tiến, kiên nhẫn và trách nhiệm với công việc được giao.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="teaching-experience">
+                <h2><i class="fas fa-chalkboard-teacher"></i> Kinh nghiệm Giảng dạy & Đào tạo</h2>
+                <div class="section-content">
+                    <div class="experience-item">
+                        <h3>Giảng dạy Lập trình Cơ bản & Chuyên sâu</h3>
+                        <span class="duration">Thời gian: 2 năm kinh nghiệm | 11/2023 - Hiện tại</span>
+                        <ul>
+                            <li>Trực tiếp giảng dạy lập trình C/C++ và các thuật toán nâng cao cho 10 học viên lớp 8, 9 ôn thi học sinh giỏi Tin học.
+                                <ul>
+                                    <li>Kết quả: 7 học viên đạt giải Nhất/ Nhì cấp Phường/ Xã và tiếp tục đạt giải Nhất/ Nhì/ Ba/ Khuyến Khích cấp Tỉnh/ Thành phố.</li>
+                                </ul>
+                            </li>
+                            <li>Hướng dẫn chuyên sâu lập trình ngôn ngữ C (4 tháng) cho 1 học viên đã đi làm trong lĩnh vực IoT (Internet of Things).
+                                <ul>
+                                    <li>Kết quả: Giúp học viên nắm vững kiến thức từ cơ bản đến nâng cao về C, phục vụ cho công việc và hiểu code các dự án công ty.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="projects">
+                <h2><i class="fas fa-project-diagram"></i> Các Dự án Nổi bật</h2>
+                <div class="section-content">
+                    <div class="project-item">
+                        <h4>Hệ thống nhắn tin và gửi file mô hình Client-Server</h4>
+                        <p class="tech-stack">Công nghệ: Java, JavaSwing, MySQL, UDP/TCP Socket, DES, HTML</p>
+                        <p>Phát triển ứng dụng chat cho phép nhiều client kết nối đến server để nhắn tin, gửi file và lưu trữ lịch sử hội thoại. Hệ thống được thiết kế đảm bảo tính bảo mật, ổn định và dễ mở rộng.</p>
+                        <ul>
+                            <li>Xây dựng kiến trúc Client–Server sử dụng giao thức TCP cho nhắn tin và UDP cho truyền file.</li>
+                            <li>Tích hợp mã hóa DES nhằm đảm bảo an toàn dữ liệu trong quá trình truyền.</li>
+                            <li>Thiết kế giao diện đồ họa bằng Java Swing, hỗ trợ hiển thị tin nhắn thời gian thực.</li>
+                            <li>Kết nối và lưu trữ dữ liệu chat, người dùng trong MySQL.</li>
+                            <li>Tối ưu hiệu năng socket để hỗ trợ nhiều người dùng đồng thời.</li>
+                            <li>Triển khai thành công phòng chat public và private cho các mục đích sử dụng khác nhau.</li>
+                        </ul>
+                    </div>
+                    <div class="project-item">
+                        <h4>Trò chơi Pacman</h4>
+                        <p class="tech-stack">Công nghệ: Python, A* Heuristic, OOP, Pygame</p>
+                        <p>Phát triển trò chơi Pacman với nhiều màn chơi, có chế độ chơi thủ công và chế độ tự động tìm đường ngắn nhất bằng thuật toán A*.</p>
+                        <ul>
+                            <li>Áp dụng lập trình hướng đối tượng (OOP) để tổ chức các thành phần như Pacman, Ghost, Map, và GameEngine.</li>
+                            <li>Cài đặt thuật toán tìm đường A* heuristic giúp Pacman di chuyển tối ưu trong chế độ tự động.</li>
+                            <li>Thiết kế giao diện trực quan, đồ họa và hiệu ứng sinh động bằng thư viện Pygame.</li>
+                            <li>Tối ưu hiệu suất xử lý va chạm và tốc độ khung hình (FPS) cho trải nghiệm mượt mà.</li>
+                        </ul>
+                    </div>
+                    </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
